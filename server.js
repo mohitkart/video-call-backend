@@ -8,6 +8,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     origin: process.env.FRONTEND || "*",
+    methods: ["GET", "POST"],
 });
 
 const PORT = process.env.PORT || 5000;
