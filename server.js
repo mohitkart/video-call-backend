@@ -11,6 +11,14 @@ const io = new Server(server, {
 });
 
 const PORT = process.env.PORT || 5000;
+// Store connected users
+// users = { userId: [socketIds] }
+const users = {};
+
+// Serve a simple route
+app.get("/", (req, res) => {
+  res.send("Socket.IO server is running ✅");
+});
 
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
