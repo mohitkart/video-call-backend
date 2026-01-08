@@ -4,11 +4,27 @@ const { Server } = require("socket.io");
 require("dotenv").config();
 
 const app = express();
-const server = http.createServer(app);
 
-const io = new Server(server, {
+/** 🔑 IMPORTANT: Express CORS (optional but safe) */
+const cors = require("cors");
+app.use(
+  cors({
     origin: process.env.FRONTEND || "*",
     methods: ["GET", "POST"],
+    credentials: true
+  })
+);
+
+
+const server = http.createServer(app);
+
+/** 🔑 Socket.IO CORS (THIS FIXES IT) */
+const io = new Server(server, {
+  cors: {
+    origin: process.env.FRONTEND || "*",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 });
 
 const PORT = process.env.PORT || 5000;
