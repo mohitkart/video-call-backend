@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: process.env.FRONTEND || 'http://localhost:3000',
   credentials: true
 };
 
@@ -55,7 +55,7 @@ const wsServer = new WebSocketServer(server);
 server.listen(PORT, () => {
   console.log(`🚀 Backend server running on port ${PORT}`);
   console.log(`🌐 WebSocket server ready at ws://localhost:${PORT}`);
-  console.log(`🔗 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
+  console.log(`🔗 Frontend URL: ${process.env.FRONTEND || 'http://localhost:3000'}`);
 });
 
 module.exports = { app, server };
